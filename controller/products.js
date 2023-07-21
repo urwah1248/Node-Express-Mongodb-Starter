@@ -1,6 +1,8 @@
 const Product = require("../models/product")
 
+//Controlller Object containing API Functions
 const productController = {
+    //GET Request
     getProducts: async (req, res) => {
         try{
             const products = await Product.find({})
@@ -10,6 +12,7 @@ const productController = {
         }
     },
 
+    //POST Request
     addProduct: async (req, res) => {
         try{
             const product = req.body
@@ -23,6 +26,7 @@ const productController = {
         }
     },
 
+    //PUT Request
     editProduct: async (req, res) => {
         try{
             const updatedProduct = await Product.findByIdAndUpdate(
@@ -36,6 +40,7 @@ const productController = {
         }
     },
 
+    //DELETE Request
     deleteProduct: async (req, res) => {
         try {
             const deletedProduct = await Product.findByIdAndDelete(req.params.id);
