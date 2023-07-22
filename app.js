@@ -1,20 +1,11 @@
 const express = require("express")
-const mongoose = require("mongoose")
 const productsRouter = require("./routers/productsRouter")
 const middleware = require("./utils/middleware")
 const app = express()
-const config = require("./utils/config")
-const logger = require("./utils/logger")
+const db = require("./db")
 
-//Configurating MongoDB using ENV Variables
-mongoose.set('strictQuery', false);
-mongoose.connect(config.MONGODB_URI)
-  .then(() => {
-    logger.info('connected to MongoDB')
-  })
-  .catch((error) => {
-    logger.error('error connecting to MongoDB:', error.message)
-  })
+//Connecting to Database
+db.connect(app)
 
 //Middleware
 app.use(express.json())
